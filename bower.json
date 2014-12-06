@@ -1,0 +1,31 @@
+{
+    "name": "angular-auto-forms",
+    "description": "Automatically adjust forms to the style of your favorite css framework.",
+    "authors": [
+        "Johannes Millan <johannes.millan@gmail.com>"
+    ],
+    "homepage": "https://github.com/johannesjo/angular-auto-forms/",
+    "license": "LGPL-2.1",
+    "main": "dist/angular-auto-forms.min.js",
+    "keywords": [
+        "angular",
+        "AngularJS",
+        "form",
+        "forms",
+        "form helper",
+        "templates"
+    ],
+    "ignore": [
+        "gh-pages",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "angular": "~1.3.4"
+    },
+    "devDependencies": {
+        "angular-animate": "~1.3.4"
+    }
+}

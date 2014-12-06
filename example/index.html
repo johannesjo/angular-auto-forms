@@ -1,0 +1,162 @@
+<!doctype html>
+<!--[if lt IE 9]>
+<html class="old-browser no-js"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>angular auto forms - angular-auto-forms</title>
+    <meta name="viewport"
+          content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <link rel="stylesheet"
+          href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/octicons/2.1.2/octicons.css">
+
+    <link rel="stylesheet"
+          href="//johannesjo.github.io/ng-fab-form/style.css">
+
+    <style>
+        .form-group {
+            position: relative;
+        }
+
+        .anchor {
+            display: none;
+        }
+
+        .main-header {
+            background:     #000;
+            padding-bottom: 15px;
+            color:          #eee;
+        }
+
+        .main-header h1 {
+            color: #eee;
+        }
+
+        p.header {
+            font-style: italic;
+        }
+
+        .motto {
+            font-size: 16px;
+        }
+
+        .help-block .list-unstyled {
+            padding: 0;
+            margin:  0;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+<header class="main-header">
+    <div class="container">
+
+        <h1 class="header">angular auto forms - angular-auto-forms</h1>
+        <p class="header motto">Forms just got automatic</p>
+        <a class="buttons btn btn-primary "
+           href="https://github.com/johannesjo/angular-auto-forms/zipball/master">
+            <span class="octicon  octicon-cloud-download"></span> Download ZIP
+            <span class="octicon  octicon-cloud-download"></span></a>
+
+        <a class="buttons btn btn-primary "
+           href="https://github.com/johannesjo/angular-auto-forms/tarball/master">
+            <span class="octicon  octicon-cloud-download"></span> Download TAR
+            <span class="octicon  octicon-cloud-download"></span></a>
+
+        <a class="buttons btn btn-primary  github"
+           href="https://github.com/johannesjo/angular-auto-forms"><span class="octicon  octicon-mark-github"></span> View On
+            GitHub <span class="octicon  octicon-mark-github"></span></a>
+        <a class="buttons btn btn-primary "
+           href="#demo"><span class="octicon  octicon-squirrel"></span> Demo
+            <span class="octicon  octicon-squirrel"></span></a>
+        <a class="buttons btn btn-primary "
+           href="#discussion"><span class="octicon  octicon-organization"></span> Discuss
+            <span class="octicon  octicon-organization"></span></a>
+        <p class="header"><br>This project is maintained by <a class="header name"
+                                                               href="https://github.com/johannesjo">johannesjo</a></p>
+
+        <a href="https://github.com/johannesjo/angular-auto-forms"
+           class="github-button"
+           data-icon="octicon-star"
+           data-count-href="/johannesjo/angular-auto-forms/stargazers"
+           data-count-api="/repos/johannesjo/angular-auto-forms#stargazers_count">Star</a>
+        <a href="https://github.com/johannesjo/angular-auto-forms"
+           class="github-button"
+           data-icon="octicon-git-branch"
+           data-count-href="/johannesjo/angular-auto-forms/network"
+           data-count-api="/repos/johannesjo/angular-auto-forms#forks_count">Fork</a>
+        <a href="https://github.com/johannesjo/angular-auto-forms/issues"
+           class="github-button"
+           data-icon="octicon-issue-opened"
+           data-count-api="/repos/johannesjo/angular-auto-forms#open_issues_count">Issue</a>
+
+        <script async
+                defer
+                id="github-bjs"
+                src="https://buttons.github.io/buttons.js"></script>
+    </div>
+</header>
+
+<div class="container">
+    <%= document %>
+</div>
+<hr>
+<div class="container"
+     ng-app="exampleApp"
+     ng-controller="exampleCtrl">
+    <a name="demo"></a>
+
+    <h1>Demos</h1>
+
+    <h2>Plunkr</h2>
+
+    <div class="example">
+        <iframe src="http://embed.plnkr.co/8vCSPw/preview"
+                style="width: 100%;min-height: 700px; border: none;"></iframe>
+    </div>
+
+    <div ng-include="'example1.html'"
+         class="example"></div>
+</div>
+
+<!-- add ga tracking -->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-57413038-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
+<!-- /add ga tracking -->
+
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<!-- endbower -->
+
+<!-- build:js({.tmp,src}) ng-fab-form.min.js -->
+<!-- fileblock:js module -->
+<script src="_anguar-auto-forms.js"></script>
+<script src="form-d.js"></script>
+<script src="angularAutoForms.js"></script>
+<script src="auto-form-bootstrap-f.js"></script>
+<!-- endfileblock -->
+<!-- endbuild -->
+
+<!-- fileblock:js example -->
+<script src="scripts/example.js"></script>
+<!-- endfileblock -->
+
+</body>
+</html>
