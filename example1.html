@@ -1,0 +1,121 @@
+<h2>Standard Form</h2>
+
+<form role="form"
+      name="exampleForm"
+      ng-submit="submit()"
+      aaf-form-handler="autoFormBootstrap.basic">
+    <input type="email"
+           placeholder="Enter Email"
+           ng-model="formData.emailAddress"
+           required
+           aaf-label="Email">
+
+    <input type="password"
+           placeholder="Enter Password"
+           ng-model="formData.password"
+           required
+           aaf-label="Your public Password: {{ formData.password }}">
+
+    <input type="checkbox"
+           required
+           aaf-label="I agree!"
+           ng-model="formData.check">
+
+    <input type="text"
+           placeholder="Enter asd"
+           ng-pattern="/^asd$/i"
+           validation-msg-pattern="Not asd :("
+           required
+           ng-model="formData.patternRequired"
+           aaf-label="Pattern-Label for /asd/">
+
+    <p>This one is is ignored because of aaf-ignore</p>
+    <input type="text"
+           placeholder="Enter Text"
+           required
+           aaf-ignore
+           ng-model="formData.ignoredByAAF"
+           aaf-label="with aaf-ignore">
+
+    <textarea ng-model="formData.textarea"
+              ng-minlength="4"
+              required
+              placeholder="Enter Comment"
+              aaf-label="Some Textarea"></textarea>
+
+    <select ng-model="formData.select"
+            aaf-label="Some Select"
+            required>
+        <option value="AA">Test-Option</option>
+    </select>
+
+    <button type="submit">Submit Form</button>
+</form>
+
+
+<hr>
+<h2>Inline form</h2>
+
+<form role="form"
+      name="exampleForm"
+      ng-submit="submit()"
+      aaf-form-handler="autoFormBootstrap.inline">
+    <input type="email"
+           placeholder="Enter Email"
+           ng-model="formData.emailAddress"
+           required
+           aaf-label="Email">
+
+    <input type="password"
+           placeholder="Enter Password"
+           ng-model="formData.password"
+           required
+           aaf-label="Your public Password: {{ formData.password }}">
+
+    <button type="submit">Submit Form</button>
+</form>
+<hr>
+
+
+<h2>Horizontal Form</h2>
+
+<form role="form"
+      name="exampleForm"
+      ng-submit="submit()"
+      aaf-form-handler="autoFormBootstrap.horizontal">
+    <input type="email"
+           placeholder="Enter Email"
+           ng-model="formData.emailAddress"
+           required
+           aaf-label="Email">
+
+    <input type="password"
+           placeholder="Enter Password"
+           ng-model="formData.password"
+           required
+           aaf-label="Your public Password: {{ formData.password }}">
+
+    <input type="checkbox"
+           required
+           aaf-label="I agree!"
+           ng-model="formData.check">
+
+    <input type="text"
+           placeholder="Enter asd"
+           ng-pattern="/^asd$/i"
+           validation-msg-pattern="Not asd :("
+           required
+           ng-model="formData.patternRequired"
+           aaf-label="Pattern-Label for /asd/">
+
+    <select ng-model="formData.select"
+            aaf-label="Some Select"
+            required>
+        <option value="AA">Test-Option</option>
+    </select>
+
+    <button type="submit">Submit Form</button>
+</form>
+
+<hr>
+

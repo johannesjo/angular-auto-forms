@@ -1,0 +1,45 @@
+<!doctype html>
+<!--[if lt IE 9]>
+<html class="old-browser no-js"><![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title>angular auto forms example</title>
+    <meta name="viewport"
+          content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet"
+          href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="//johannesjo.github.io/ng-fab-form/style.css">
+
+</head>
+<body>
+<div class="container"
+     ng-app="exampleApp"
+     ng-controller="exampleCtrl">
+    <a name="demo"></a>
+
+    <h1>Develop</h1>
+
+    <div ng-include="'example1.html'"
+         class="example"></div>
+</div>
+
+
+<!-- /add ga tracking -->
+
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<!-- endbower -->
+
+<script src="ng-fab-form.min.js"></script>
+
+<!-- fileblock:js example -->
+<script src="scripts/example.js"></script>
+<!-- endfileblock -->
+
+</body>
+</html>
