@@ -1,9 +1,9 @@
 angular.module('angularAutoForms')
-    .directive('form', function (AngularAutoForms, $injector, $parse)
+    .directive('form', function (AngularAutoForms, $injector)
     {
         'use strict';
 
-        function getHandlerFromAttr(aafFormHandler, el, attrs)
+        function getHandlerFromAttr(aafFormHandler)
         {
             var split = aafFormHandler.split('.');
             if (split.length > 2) {

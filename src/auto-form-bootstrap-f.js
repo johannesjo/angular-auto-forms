@@ -120,14 +120,15 @@ angular.module('angularAutoForms')
                 angular.forEach(submits, function (el)
                 {
                     el = angular.element(el);
+                    if (el.attr('type') === 'submit') {
+                        // return on ignore-'directive'
+                        var ignore = el.attr(ignoreName);
+                        if (ignore || ignore === '') {
+                            return;
+                        }
 
-                    // return on ignore-'directive'
-                    var ignore = el.attr(ignoreName);
-                    if (ignore || ignore === '') {
-                        return;
+                        el.addClass('btn btn-primary');
                     }
-
-                    el.addClass('btn btn-primary');
                 });
             },
 
@@ -161,8 +162,9 @@ angular.module('angularAutoForms')
                     if (ignore || ignore === '') {
                         return;
                     }
-
-                    el.addClass('btn btn-primary');
+                    if (el.attr('type') === 'submit') {
+                        el.addClass('btn btn-primary');
+                    }
                 });
             },
 
@@ -196,10 +198,11 @@ angular.module('angularAutoForms')
                     if (ignore || ignore === '') {
                         return;
                     }
-
-                    el.wrap('<div class="form-group"></div>')
-                        .wrap('<div class ="' + getOffsetClass(colRightClass) + ' ' + colRightClass + '"></div>')
-                        .addClass('btn btn-primary');
+                    if (el.attr('type') === 'submit') {
+                        el.wrap('<div class="form-group"></div>')
+                            .wrap('<div class ="' + getOffsetClass(colRightClass) + ' ' + colRightClass + '"></div>')
+                            .addClass('btn btn-primary');
+                    }
                 });
             }
         };

@@ -375,8 +375,8 @@ module.exports = function (grunt)
                     // includes files within path
                     {
                         flatten: true,
-                        src: ['.tmp/concat/ng-fab-form.min.js'],
-                        dest: '<%= appConfig.dist %>/ng-fab-form.js'
+                        src: ['.tmp/concat/angular-auto-forms.min.js'],
+                        dest: '<%= appConfig.dist %>/angular-auto-forms.js'
                     }
                 ]
             },
@@ -430,7 +430,6 @@ module.exports = function (grunt)
             'uglify:generated',
             'usemin',
             'copy:ghPages',
-            'cdnify:dist',
             'md2html:one_file'
         ]);
     });
