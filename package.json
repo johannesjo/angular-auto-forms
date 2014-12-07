@@ -1,5 +1,5 @@
 {
-  "name": "ng-fab-forms",
+  "name": "angular-auto-forms",
   "version": "0.5.3",
   "devDependencies": {
     "grunt": "^0.4.1",
