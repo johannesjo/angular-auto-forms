@@ -2,8 +2,7 @@ angular-auto-forms
 ==================
 *[ng-fab-form](https://github.com/johannesjo/ng-fab-form)'s little companion for auto-markup*
 
-Simple helper + extendable api. Get from a couple of form elements to fully standard bootstrap-markup in a breeze. Take the same form, change an attribute and get anther form layout.
-Allows you to declare your own rules and should be easily extended for other css-frameworks, even your very own.
+Simple helper + extendable api. Get from a couple of form elements to fully standard bootstrap-markup in a breeze. Take the same form, change an attribute and get anther form layout. Allows you to declare your own rules and should be easily extended for other css-frameworks, even your very own. [Try it yourself!](http://plnkr.co/edit/id1Oh4?p=preview)
 
 ## Install
 ```
@@ -56,7 +55,7 @@ Set the `aaf-form-handler` to `autoFormBootstrap.basic` on your form:
 </form>
 
 ```
-And enjoy!
+And enjoy! 
 
 ## Directives
 #### aaf-ignore
