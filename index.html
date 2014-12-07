@@ -72,8 +72,7 @@
             <span class="octicon  octicon-cloud-download"></span></a>
 
         <a class="buttons btn btn-primary  github"
-           href="https://github.com/johannesjo/angular-auto-forms"><span class="octicon  octicon-mark-github"></span>
-            View On
+           href="https://github.com/johannesjo/angular-auto-forms"><span class="octicon  octicon-mark-github"></span> View On
             GitHub <span class="octicon  octicon-mark-github"></span></a>
         <a class="buttons btn btn-primary "
            href="#demo"><span class="octicon  octicon-squirrel"></span> Demo
@@ -108,7 +107,115 @@
 
 <div class="container">
     <h1 id="angular-auto-forms">angular-auto-forms</h1>
-<p>Forms with angular just got a little easier. Check out Angular Auto Forms!</p>
+<p><em><a href="https://github.com/johannesjo/ng-fab-form">ng-fab-form</a>&#39;s little companion for auto-markup</em></p>
+<p>Simple helper + extendable api. Get from a couple of form elements to fully standard bootstrap-markup in a breeze. Take the same form, change an attribute and get anther form layout.
+Allows you to declare your own rules and should be easily extended for other css-frameworks, even your very own.</p>
+<h2 id="install">Install</h2>
+<pre><code>bower install angular-auto-forms --save-dev
+</code></pre><p>or install its companion <a href="https://github.com/johannesjo/ng-fab-form">ng-fab-form</a> together with it:</p>
+<pre><code>bower install angular-auto-forms ng-fab-form --save-dev
+</code></pre><h2 id="example">Example</h2>
+<p>Load the module:</p>
+<pre><code class="lang-javascript">angular.module(&#39;exampleApp&#39;, [
+    &#39;angularAutoForms&#39;
+]);
+</code></pre>
+<p>Set the <code>aaf-form-handler</code> to <code>autoFormBootstrap.basic</code> on your form:</p>
+<pre><code class="lang-html">&lt;form role=&quot;form&quot;
+      name=&quot;exampleForm&quot;
+      ng-submit=&quot;submit()&quot;
+      aaf-form-handler=&quot;autoFormBootstrap.basic&quot;&gt;
+    &lt;input type=&quot;email&quot;
+           placeholder=&quot;Enter Email&quot;          
+           aaf-label=&quot;Email&quot;&gt;
+
+    &lt;input type=&quot;password&quot;
+           required
+           ng-model=&quot;formData.password&quot;
+           aaf-label=&quot;Your public Password: {{ formData.password }}&quot;&gt;
+    &lt;!-- note that you can pass $scope.variables to aaf-label --&gt;
+
+    &lt;input type=&quot;checkbox&quot;
+           aaf-label=&quot;I agree!&quot;&gt;
+
+    &lt;input type=&quot;text&quot;
+           aaf-label=&quot;Pattern-Label for /asd/&quot;&gt;
+
+    &lt;textarea aaf-label=&quot;Some Textarea&quot;&gt;&lt;/textarea&gt;
+
+    &lt;select aaf-label=&quot;Some Select&quot;&gt;
+        &lt;option value=&quot;Test Option&quot;&gt;Test-Option&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;button type=&quot;submit&quot;&gt;Submit Form&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p>And enjoy!</p>
+<h2 id="directives">Directives</h2>
+<h4 id="aaf-ignore">aaf-ignore</h4>
+<p>If applied to a form, the form ignores the default form-handler if one is set.
+If applied to a form-element, it leaves it untouched.</p>
+<h4 id="aaf-label">aaf-label</h4>
+<p>The label-text. Applieable to every form element. You can pass scope-variables to it, too!</p>
+<pre><code>&lt;textarea aaf-label=&quot;Some Textarea-Label&quot;&gt;&lt;/textarea&gt;
+</code></pre><h4 id="aaf-form-handler">aaf-form-handler</h4>
+<p>Sets the form markup-helper function. The default bootstrap helper ships with three: <code>inline</code>,  <code>basic</code> and <code>horizontal</code>. </p>
+<pre><code class="lang-html">&lt;form role=&quot;form&quot;
+      name=&quot;exampleForm&quot;
+      ng-submit=&quot;submit()&quot;
+      aaf-form-handler=&quot;autoFormBootstrap.inline&quot;&gt;
+      ...
+      ...
+      ...
+&lt;/form&gt;
+</code></pre>
+<h2 id="set-a-default-handler">Set a default Handler</h2>
+<pre><code>angular.module(&#39;exampleApp&#39;, [
+    &#39;angularAutoForms&#39;
+])
+    .run(function (AngularAutoForms, autoFormBootstrap)
+    {
+        AngularAutoForms.defaultHandler = autoFormBootstrap.inline;
+    });
+</code></pre><h2 id="create-your-own-helper">Create your own helper</h2>
+<p>Although not required for the standard form, it is highly recommended to install jQuery, when creating your own handlers as things are little complicated with jQuery-lite sometimes. </p>
+<p>With jQuey it should be super easy to create your own helpers. An example:</p>
+<pre><code>angular.module(&#39;angularAutoForms&#39;)
+    .factory(&#39;autoFormMyForm&#39;, function (AngularAutoForms)
+    {
+        &#39;use strict&#39;;
+
+        var labelName = AngularAutoForms.config.label,
+            ignoreName = AngularAutoForms.config.ignore;
+
+        return {
+            simple:function(formEl){
+                formEl.addClass(&#39;my-simple-form&#39;);
+
+                var inputs = formEl.find(&#39;input&#39;);            
+                inputs.each(function(){
+                var el = $(this);
+                    el.wrap(&#39;&lt;div class=&quot;my-simple-form-input-wrapper&quot;&gt;&lt;/div&gt;&#39;)
+                      .parent().prepend(&#39;&lt;label&gt;&#39; + el.attr(labelName) + &#39;&lt;/label&gt;&#39;);
+
+                });
+
+                var checkboxes = formEl.find(&#39;input[type=&quot;checkbox&quot;&#39;);
+                checkboxes.wrap(&#39;&lt;label class =&quot;checkbox&quot;&gt;&lt;/label&gt;&#39;);            
+            }
+        };
+    });
+</code></pre><pre><code class="lang-html">&lt;form role=&quot;form&quot;
+      name=&quot;exampleForm&quot;
+      ng-submit=&quot;submit()&quot;
+      aaf-form-handler=&quot;autoFormMyForm.simple&quot;&gt;
+      ...
+      ...
+      ...
+&lt;/form&gt;
+</code></pre>
+<p>Created something useful? Share it!</p>
+<p><code>angular-auto-forms</code> is published under the <a href="https://github.com/johannesjo/angular-auto-forms4/blob/master/LICENSE">The GNU Lesser General Public License V2.1</a>.</p>
 
 </div>
 <hr>
@@ -119,25 +226,23 @@
 
     <h1>Demos</h1>
 
+    <h2>Plunkr</h2>
+
+    <div class="example">
+        <iframe src="http://embed.plnkr.co/8vCSPw/preview"
+                style="width: 100%;min-height: 700px; border: none;"></iframe>
+    </div>
+
     <div ng-include="'example1.html'"
          class="example"></div>
 </div>
 
 <!-- add ga tracking -->
 <script>
-    (function (i, s, o, g, r, a, m)
-    {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function ()
-        {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-57413038-1', 'auto');
     ga('send', 'pageview');
@@ -146,11 +251,12 @@
 <!-- /add ga tracking -->
 
 <!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <!-- endbower -->
 
-<script src="ng-fab-form.min.js"></script>
+<script src="angular-auto-forms.min.js"></script>
 
 <!-- fileblock:js example -->
 <script src="scripts/example.js"></script>

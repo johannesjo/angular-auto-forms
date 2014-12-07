@@ -1,11 +1,11 @@
 angular.module('angularAutoForms', []);
 
 angular.module('angularAutoForms')
-    .directive('form', function (AngularAutoForms, $injector, $parse)
+    .directive('form', function (AngularAutoForms, $injector)
     {
         'use strict';
 
-        function getHandlerFromAttr(aafFormHandler, el, attrs)
+        function getHandlerFromAttr(aafFormHandler)
         {
             var split = aafFormHandler.split('.');
             if (split.length > 2) {
@@ -25,16 +25,14 @@ angular.module('angularAutoForms')
             require: 'form',
             compile: function (el, attrs)
             {
-                if (AngularAutoForms.defaultHandler) {
-                    var ignore = el.attr('aaf-ignore'),
-                        aafFormHandler = el.attr('aaf-form-handler');
-                    if (ignore || ignore === '') {
-                        return;
-                    } else if (aafFormHandler) {
-                        getHandlerFromAttr(aafFormHandler)(el, attrs);
-                    } else {
-                        AngularAutoForms.defaultHandler(el, attrs);
-                    }
+                var ignore = el.attr('aaf-ignore'),
+                    aafFormHandler = el.attr('aaf-form-handler');
+                if (ignore || ignore === '') {
+                    return;
+                } else if (aafFormHandler) {
+                    getHandlerFromAttr(aafFormHandler)(el, attrs);
+                } else if (AngularAutoForms.defaultHandler) {
+                    AngularAutoForms.defaultHandler(el, attrs);
                 }
             }
         };
@@ -162,14 +160,15 @@ angular.module('angularAutoForms')
                 angular.forEach(submits, function (el)
                 {
                     el = angular.element(el);
+                    if (el.attr('type') === 'submit') {
+                        // return on ignore-'directive'
+                        var ignore = el.attr(ignoreName);
+                        if (ignore || ignore === '') {
+                            return;
+                        }
 
-                    // return on ignore-'directive'
-                    var ignore = el.attr(ignoreName);
-                    if (ignore || ignore === '') {
-                        return;
+                        el.addClass('btn btn-primary');
                     }
-
-                    el.addClass('btn btn-primary');
                 });
             },
 
@@ -203,8 +202,9 @@ angular.module('angularAutoForms')
                     if (ignore || ignore === '') {
                         return;
                     }
-
-                    el.addClass('btn btn-primary');
+                    if (el.attr('type') === 'submit') {
+                        el.addClass('btn btn-primary');
+                    }
                 });
             },
 
@@ -238,10 +238,11 @@ angular.module('angularAutoForms')
                     if (ignore || ignore === '') {
                         return;
                     }
-
-                    el.wrap('<div class="form-group"></div>')
-                        .wrap('<div class ="' + getOffsetClass(colRightClass) + ' ' + colRightClass + '"></div>')
-                        .addClass('btn btn-primary');
+                    if (el.attr('type') === 'submit') {
+                        el.wrap('<div class="form-group"></div>')
+                            .wrap('<div class ="' + getOffsetClass(colRightClass) + ' ' + colRightClass + '"></div>')
+                            .addClass('btn btn-primary');
+                    }
                 });
             }
         };
@@ -271,4 +272,26 @@ angular.module('angularAutoForms')
         return AngularAutoForms;
     });
 
-//# sourceMappingURL=ng-fab-form.min.js.map
+angular.module('angularAutoForms')
+    .factory('autoFormIonic', function (AngularAutoForms)
+    {
+        'use strict';
+        var labelName = AngularAutoForms.config.label,
+            ignoreName = AngularAutoForms.config.ignore;
+
+
+        // factory definition
+        var factory = {
+            basic: function (el)
+            {
+
+            },
+            inlineLabels: function (el)
+            {
+            }
+        };
+
+        return factory;
+    });
+
+//# sourceMappingURL=angular-auto-forms.min.js.map
