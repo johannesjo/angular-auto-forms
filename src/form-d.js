@@ -23,16 +23,14 @@ angular.module('angularAutoForms')
             require: 'form',
             compile: function (el, attrs)
             {
-                if (AngularAutoForms.defaultHandler) {
-                    var ignore = el.attr('aaf-ignore'),
-                        aafFormHandler = el.attr('aaf-form-handler');
-                    if (ignore || ignore === '') {
-                        return;
-                    } else if (aafFormHandler) {
-                        getHandlerFromAttr(aafFormHandler)(el, attrs);
-                    } else {
-                        AngularAutoForms.defaultHandler(el, attrs);
-                    }
+                var ignore = el.attr('aaf-ignore'),
+                    aafFormHandler = el.attr('aaf-form-handler');
+                if (ignore || ignore === '') {
+                    return;
+                } else if (aafFormHandler) {
+                    getHandlerFromAttr(aafFormHandler)(el, attrs);
+                } else if (AngularAutoForms.defaultHandler) {
+                    AngularAutoForms.defaultHandler(el, attrs);
                 }
             }
         };
